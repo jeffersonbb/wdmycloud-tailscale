@@ -1,0 +1,19 @@
+Package:	tailscale
+Version:	1.0.0
+Packager:	Jefferson Baptista
+Email:
+Homepage:	https://github.com/jeffersonbb/wdmycloud-tailscale
+Description:	VPN Tailscale (nao oficial). Baixa o Tailscale oficial na instalacao e roda em modo userspace.
+Icon:			tailscale.png
+AddonShowName:	Tailscale
+AddonIndexPage:	index.html
+AddonUsedPort:	5252
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+CenterType: 1
+UserControl: 0
+MinFWVer:
+MaxFWVer:
+IndividualFlag: 0

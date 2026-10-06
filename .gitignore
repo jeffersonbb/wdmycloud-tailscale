@@ -1,0 +1,5 @@
+dist/
+*.bin
+*.bin(*)
+package/apkg.sign
+package/apkg.xml

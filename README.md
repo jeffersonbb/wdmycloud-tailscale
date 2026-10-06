@@ -112,4 +112,4 @@ BSD 3-Clause. Veja [LICENSE](LICENSE).
 
 ## Autor
 
-Jefferson Baptista, [INFRA.RIO](https://infra.rio.br)
+Jefferson Baptista, [jeffersonbb.com.br](https://jeffersonbb.com.br)

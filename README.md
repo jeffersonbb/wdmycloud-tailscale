@@ -24,28 +24,24 @@ O resultado é um app instalável pelo painel do My Cloud que roda o [Tailscale]
 
 | Modelo | Firmware | Status |
 |---|---|---|
-| My Cloud EX2 Ultra | 5.33.102 | Testado: instalação, inicialização e login |
+| My Cloud EX2 Ultra | 5.33.102 | Testado: instalação, login e acesso remoto via SMB (4G) |
 
 Outros modelos ARM com OS 5 podem funcionar gerando o pacote com o nome do modelo (veja "Gerar o pacote"), mas não foram testados.
 
 ## Instalação
 
+> 📖 **[Guia completo passo a passo](docs/GUIA.md)**: da conta no Tailscale até mapear o NAS como unidade de rede, com dicas de segurança e solução de problemas.
+
+Resumo:
+
 1. Crie uma conta gratuita em [tailscale.com](https://tailscale.com).
-2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.3.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.3.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)). Se preferir, gere você mesmo (veja abaixo).
-3. No painel do My Cloud, vá em **Apps → Instalar app manualmente** e selecione o `.bin`. O NAS precisa estar com acesso à internet.
+2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.3.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.3.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)).
+3. No painel do My Cloud, vá em **Apps → Instalar um aplicativo manualmente** e selecione o `.bin`. O NAS precisa estar com acesso à internet.
 4. Abra o app **Tailscale** no painel e clique em **Abrir painel do Tailscale** (`http://<ip-do-nas>:5252`). Faça login com a sua conta.
 5. Instale o Tailscale no notebook ou celular e entre com a mesma conta.
-6. Fora de casa, com o Tailscale ligado, acesse `\\<ip-100.x-do-NAS>\<compartilhamento>`. O IP `100.x` aparece no painel do Tailscale.
+6. Fora de casa, com o Tailscale ligado, acesse `\\<ip-100.x-do-NAS>` no Windows Explorer. O IP `100.x` aparece em [login.tailscale.com/admin/machines](https://login.tailscale.com/admin/machines).
 
-### Se o painel da porta 5252 não abrir
-
-Ative o SSH no painel do My Cloud e rode:
-
-```sh
-/mnt/HD/HD_a2/Nas_Prog/tailscale/bin/tailscale --socket=/var/run/tailscale/tailscaled.sock up
-```
-
-O comando mostra um link de login.
+Problemas? Veja a seção [Solução de problemas](docs/GUIA.md#10-solução-de-problemas) do guia.
 
 ## Atualizar o Tailscale
 
@@ -90,6 +86,7 @@ tailscale/         scripts do app (formato APKG do My Cloud OS 5)
   remove.sh        desinstalação
   web/             página do app no painel
   cacert.pem       certificados raiz para o download via HTTPS
+docs/GUIA.md       guia completo de instalação e uso
 downloads/         pacote .bin pronto para instalar
 tools/mksapkg-OS5  empacotador da comunidade WD
 tools/openssl-legacy.cnf  habilita a cifra antiga que o empacotador usa (OpenSSL 3)

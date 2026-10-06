@@ -1,5 +1,5 @@
 dist/
 *.bin
 *.bin(*)
-package/apkg.sign
-package/apkg.xml
+tailscale/apkg.sign
+tailscale/apkg.xml

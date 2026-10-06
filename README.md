@@ -80,7 +80,7 @@ O `.bin` é gerado em `dist/`. Para outro modelo, troque `MyCloudEX2Ultra` em `b
 ## Estrutura
 
 ```
-package/           scripts do app (formato APKG do My Cloud OS 5)
+tailscale/         scripts do app (formato APKG do My Cloud OS 5)
   apkg.rc          metadados do app
   common.sh        variáveis compartilhadas
   install.sh       instalação (copia o app e baixa o Tailscale)
@@ -102,7 +102,7 @@ Este projeto só foi possível graças a trabalhos de outras pessoas:
 - **[WDCommunity/wdpksrc](https://github.com/WDCommunity/wdpksrc)** (BSD 3-Clause, © 2018 WDCommunity). A estrutura do pacote segue o formato e os scripts de exemplo do projeto, em especial o pacote ZeroTier, e a ferramenta `tools/mksapkg-OS5` vem de lá sem modificações. A ideia de baixar o binário oficial na instalação vem do pacote rclone do mesmo projeto. Licença em [`tools/LICENSE-wdpksrc`](tools/LICENSE-wdpksrc).
 - **[Tailscale](https://github.com/tailscale/tailscale)** (BSD 3-Clause, © 2020 Tailscale Inc & contributors). É o software de VPN em si, baixado do site oficial na instalação. Licença em [`tools/LICENSE-tailscale`](tools/LICENSE-tailscale).
 - **[MrCodeEU/homelab-automation](https://github.com/MrCodeEU/homelab-automation)**, que mostrou que rodar o Tailscale como binário avulso no EX2 Ultra funciona.
-- **Certificados raiz** em `package/cacert.pem`: pacote `ca-certificates` do Debian, derivado do repositório de certificados da Mozilla (MPL 2.0).
+- **Certificados raiz** em `tailscale/cacert.pem`: pacote `ca-certificates` do Debian, derivado do repositório de certificados da Mozilla (MPL 2.0).
 
 Desenvolvido com apoio do Claude (Anthropic).
 

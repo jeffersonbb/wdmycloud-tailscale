@@ -4,8 +4,12 @@ APKG_PATH=$(dirname "$(readlink -f "$0")")
 . "$APKG_PATH/common.sh"
 CA="$APKG_PATH/cacert.pem"
 BASE=${TS_BASE:-https://pkgs.tailscale.com/stable}
-TMP=/tmp/tailscale_dl
-rm -rf "$TMP"; mkdir -p "$TMP" "$APKG_PATH/bin"
+# O /tmp do My Cloud fica em memoria e e pequeno demais para o pacote do
+# Tailscale; por isso a area temporaria fica no volume de dados.
+TMP=${TS_TMP:-$STATE_DIR/download}
+rm -rf /tmp/tailscale_dl   # sobra de versoes anteriores que usavam o /tmp
+rm -rf "$TMP"; mkdir -p "$TMP" "$APKG_PATH/bin" || { echo "ERRO: nao consegui criar $TMP"; exit 1; }
+trap 'rm -rf "$TMP"' EXIT
 
 fetch() { curl -fsSL --cacert "$CA" "$1" -o "$2" || curl -fsSL "$1" -o "$2"; }
 
@@ -25,7 +29,8 @@ else
   echo "AVISO: nao foi possivel baixar o .sha256"
 fi
 
-tar -xzf "$TMP/ts.tgz" -C "$TMP" || exit 1
+tar -xzf "$TMP/ts.tgz" -C "$TMP" || { echo "ERRO: falha ao descompactar"; exit 1; }
+rm -f "$TMP/ts.tgz"
 DIR=""; for d in "$TMP"/tailscale_*; do [ -d "$d" ] && DIR="$d"; done
 [ -n "$DIR" ] || { echo "ERRO: pacote baixado com formato inesperado"; exit 1; }
 RUNNING=0; ts_running && RUNNING=1

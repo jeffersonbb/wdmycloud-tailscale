@@ -31,7 +31,7 @@ Outros modelos ARM com OS 5 podem funcionar gerando o pacote com o nome do model
 ## Instalação
 
 1. Crie uma conta gratuita em [tailscale.com](https://tailscale.com).
-2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.2.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.2.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)). Se preferir, gere você mesmo (veja abaixo).
+2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.3.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.3.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)). Se preferir, gere você mesmo (veja abaixo).
 3. No painel do My Cloud, vá em **Apps → Instalar app manualmente** e selecione o `.bin`. O NAS precisa estar com acesso à internet.
 4. Abra o app **Tailscale** no painel e clique em **Abrir painel do Tailscale** (`http://<ip-do-nas>:5252`). Faça login com a sua conta.
 5. Instale o Tailscale no notebook ou celular e entre com a mesma conta.
@@ -57,11 +57,11 @@ sh /mnt/HD/HD_a2/Nas_Prog/tailscale/update.sh
 
 ## Logs
 
-- Instalação e inicialização: `/tmp/tailscale_apkg.log`
-- Serviço do Tailscale: `/tmp/tailscaled.log`
-- Painel web: `/tmp/tailscale_web.log`
+- Instalação e inicialização: `/tmp/tailscale_apkg.log` (apagado no reboot)
+- Serviço do Tailscale: `/mnt/HD/HD_a2/.systemfile/tailscale/tailscaled.log`
+- Painel web: `/mnt/HD/HD_a2/.systemfile/tailscale/tailscale_web.log`
 
-Os logs ficam em `/tmp` e são apagados no reboot.
+Os logs do serviço ficam no disco porque o `/tmp` do My Cloud é pequeno. A cada inicialização, o log anterior é guardado como `.old`.
 
 ## Desinstalar
 

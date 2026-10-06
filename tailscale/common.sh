@@ -7,6 +7,9 @@ STATE_DIR=/mnt/HD/HD_a2/.systemfile/tailscale
 RUN_DIR=/var/run/tailscale
 SOCKET=$RUN_DIR/tailscaled.sock
 WEB_PORT=5252
+# Logs do servico ficam no disco (o /tmp e pequeno); rotacionados a cada inicio
+TSD_LOG=$STATE_DIR/tailscaled.log
+WEB_LOG=$STATE_DIR/tailscale_web.log
 log() { echo "$(date '+%F %T') $*" >> "$LOG"; }
 
 # --- Funcoes auxiliares (o BusyBox do My Cloud OS 5 nao tem todos os comandos) ---
@@ -45,3 +48,6 @@ lan_ip() {
   fi
   echo "${_ip:-0.0.0.0}"
 }
+
+# Guarda o log anterior como .old e comeca um novo (limita o uso de disco)
+rotate_log() { [ -f "$1" ] && mv -f "$1" "$1.old"; : > "$1"; }

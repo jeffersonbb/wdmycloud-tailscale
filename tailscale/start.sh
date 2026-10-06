@@ -7,19 +7,20 @@ BIN="$APKG_PATH/bin"
 ts_running && { log "start: ja rodando"; exit 0; }
 
 mkdir -p "$STATE_DIR" "$RUN_DIR"
+rotate_log "$TSD_LOG"; rotate_log "$WEB_LOG"
 log "start: iniciando tailscaled"
 # userspace-networking: nao depende de modulo tun no kernel do NAS.
 # Conexoes ao IP 100.x do NAS sao entregues aos servicos locais (SMB, painel).
 "$BIN/tailscaled" --tun=userspace-networking \
   --statedir="$STATE_DIR" --socket="$SOCKET" --port=41641 \
-  </dev/null >> /tmp/tailscaled.log 2>&1 &
+  </dev/null >> "$TSD_LOG" 2>&1 &
 
 # espera o socket
 i=0; while [ ! -S "$SOCKET" ] && [ $i -lt 20 ]; do sleep 1; i=$((i+1)); done
-[ -S "$SOCKET" ] || log "start: AVISO socket nao apareceu em 20 s (veja /tmp/tailscaled.log)"
+[ -S "$SOCKET" ] || log "start: AVISO socket nao apareceu em 20 s (veja $TSD_LOG)"
 
 # Painel web do Tailscale (login e status), apenas na rede local
 LANIP=$(lan_ip)
 "$BIN/tailscale" --socket="$SOCKET" web --listen "$LANIP:$WEB_PORT" \
-  </dev/null >> /tmp/tailscale_web.log 2>&1 &
+  </dev/null >> "$WEB_LOG" 2>&1 &
 log "start: ok (painel em http://$LANIP:$WEB_PORT)"

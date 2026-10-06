@@ -31,7 +31,7 @@ Outros modelos ARM com OS 5 podem funcionar gerando o pacote com o nome do model
 ## Instalação
 
 1. Crie uma conta gratuita em [tailscale.com](https://tailscale.com).
-2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.1.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.1.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)). Se preferir, gere você mesmo (veja abaixo).
+2. Baixe o pacote: **[MyCloudEX2Ultra_tailscale_1.0.2.bin](https://github.com/jeffersonbb/wdmycloud-tailscale/raw/main/downloads/MyCloudEX2Ultra_tailscale_1.0.2.bin)** (SHA-256 em [`downloads/SHA256SUMS`](downloads/SHA256SUMS)). Se preferir, gere você mesmo (veja abaixo).
 3. No painel do My Cloud, vá em **Apps → Instalar app manualmente** e selecione o `.bin`. O NAS precisa estar com acesso à internet.
 4. Abra o app **Tailscale** no painel e clique em **Abrir painel do Tailscale** (`http://<ip-do-nas>:5252`). Faça login com a sua conta.
 5. Instale o Tailscale no notebook ou celular e entre com a mesma conta.

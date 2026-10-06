@@ -24,7 +24,7 @@ O resultado é um app instalável pelo painel do My Cloud que roda o [Tailscale]
 
 | Modelo | Firmware | Status |
 |---|---|---|
-| My Cloud EX2 Ultra | My Cloud OS 5 (5.x) | Alvo do pacote |
+| My Cloud EX2 Ultra | 5.33.102 | Testado: instalação, inicialização e login |
 
 Outros modelos ARM com OS 5 podem funcionar gerando o pacote com o nome do modelo (veja "Gerar o pacote"), mas não foram testados.
 
@@ -95,6 +95,13 @@ tools/mksapkg-OS5  empacotador da comunidade WD
 tools/openssl-legacy.cnf  habilita a cifra antiga que o empacotador usa (OpenSSL 3)
 build.sh           gera o .bin
 ```
+
+## Histórico de versões
+
+- **1.0.3**: download e logs do serviço passam a usar o disco de dados (o `/tmp` do My Cloud é pequeno demais para descompactar o Tailscale).
+- **1.0.2**: compatibilidade com o BusyBox do My Cloud OS 5, que não tem `sha256sum`, `pidof` e outros comandos.
+- **1.0.1**: corrige a estrutura do pacote, que era recusado pelo painel com erro de upload.
+- **1.0.0**: primeira versão.
 
 ## Créditos
 

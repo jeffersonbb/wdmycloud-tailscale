@@ -3,3 +3,4 @@ dist/
 *.bin(*)
 tailscale/apkg.sign
 tailscale/apkg.xml
+!downloads/*.bin
